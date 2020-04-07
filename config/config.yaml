@@ -1,0 +1,23 @@
+imports:
+    # A. monorepo location
+    - { resource: '../../../vendor/symplify/easy-hydrator/config/config.yaml' }
+
+parameters:
+    route_usage_exclude_routes: []
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Migrify\SymfonyRouteUsage\:
+        resource: '../src'
+        exclude:
+            - '../src/Entity/*'
+            - '../src/ValueObject/*'
+
+    Symplify\PackageBuilder\Console\Style\SymfonyStyleFactory: null
+
+    Symfony\Component\Console\Style\SymfonyStyle:
+        factory: ['@Symplify\PackageBuilder\Console\Style\SymfonyStyleFactory', 'create']

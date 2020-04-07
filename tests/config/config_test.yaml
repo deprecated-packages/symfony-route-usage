@@ -1,0 +1,24 @@
+imports:
+    - { resource: "packages/*" }
+
+parameters:
+    database_name: 'migrify_symfony_route_usage_tests'
+
+services:
+    # inspired from https://raw.githubusercontent.com/symplify/easy-coding-standard/master/config/services/services_cache.yaml
+    Symfony\Component\Cache\Psr16Cache: ~
+    Psr\SimpleCache\CacheInterface: '@Symfony\Component\Cache\Psr16Cache'
+
+    Symfony\Component\Cache\Adapter\FilesystemAdapter:
+        factory: ['@Rector\Caching\Cache\Adapter\FilesystemAdapterFactory', 'create']
+
+    Symfony\Component\Cache\Adapter\TagAwareAdapter:
+        $itemsPool: '@Symfony\Component\Cache\Adapter\FilesystemAdapter'
+
+    Psr\Cache\CacheItemPoolInterface: '@Symfony\Component\Cache\Adapter\FilesystemAdapter'
+
+    Symfony\Component\Cache\Adapter\TagAwareAdapterInterface: '@Symfony\Component\Cache\Adapter\TagAwareAdapter'
+
+    doctrine.schema_create_command:
+        public: true
+        class: Doctrine\Bundle\DoctrineBundle\Command\Proxy\CreateSchemaDoctrineCommand

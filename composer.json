@@ -1,0 +1,32 @@
+{
+    "name": "migrify/symfony-route-usage",
+    "description": "Detect used and unused Symfony routes",
+    "license": "MIT",
+    "require": {
+        "php": "^7.2",
+        "symplify/package-builder": "^7.2",
+        "symplify/smart-file-system": "^7.2",
+        "symplify/easy-hydrator": "dev-master"
+    },
+    "require-dev": {
+        "dama/doctrine-test-bundle": "^6.3",
+        "doctrine/annotations": "^1.10",
+        "doctrine/cache": "^1.10",
+        "doctrine/doctrine-bundle": "^2.0",
+        "doctrine/dbal": "^2.10",
+        "doctrine/orm": "^2.7",
+        "phpunit/phpunit": "^8.5|^9.0",
+        "symfony/http-kernel": "^5.0",
+        "symfony/framework-bundle": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Migrify\\SymfonyRouteUsage\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Migrify\\SymfonyRouteUsage\\Tests\\": "tests"
+        }
+    }
+}
