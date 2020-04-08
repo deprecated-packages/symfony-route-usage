@@ -6,6 +6,7 @@ namespace Migrify\SymfonyRouteUsage\Tests\HttpKernel;
 
 use DAMA\DoctrineTestBundle\DAMADoctrineTestBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Migrify\SymfonyRouteUsage\SymfonyRouteUsageBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
@@ -16,7 +17,6 @@ final class SymfonyRouteUsageKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load(__DIR__ . '/../config/config_test.yaml');
-        $loader->load(__DIR__ . '/../../config/config.yaml');
     }
 
     /**
@@ -24,7 +24,12 @@ final class SymfonyRouteUsageKernel extends Kernel
      */
     public function registerBundles(): iterable
     {
-        return [new DoctrineBundle(), new FrameworkBundle(), new DAMADoctrineTestBundle()];
+        return [
+            new DoctrineBundle(),
+            new FrameworkBundle(),
+            new DAMADoctrineTestBundle(),
+            new SymfonyRouteUsageBundle(),
+        ];
     }
 
     public function getCacheDir(): string
