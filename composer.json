@@ -1,6 +1,7 @@
 {
     "name": "migrify/symfony-route-usage",
     "description": "Detect used and unused Symfony routes",
+    "type": "symfony-bundle",
     "license": "MIT",
     "require": {
         "php": "^7.2",
