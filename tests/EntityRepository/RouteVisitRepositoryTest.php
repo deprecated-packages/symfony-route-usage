@@ -57,6 +57,7 @@ final class RouteVisitRepositoryTest extends AbstractKernelTestCase
         // disable Doctrine logs in tests output
         $entityManager = self::$container->get('doctrine.orm.entity_manager');
         $entityManager->getConfiguration();
+
         $connection = $entityManager->getConnection();
 
         /** @var Configuration $configuration */
