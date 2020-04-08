@@ -23,11 +23,11 @@ final class SymfonyRouteUsageExtension extends Extension implements PrependExten
         // @see https://symfony.com/doc/current/bundles/prepend_extension.html#more-than-one-bundle-using-prependextensioninterface
         $containerBuilder->prependExtensionConfig('doctrine', [
             'orm' => [
-                'auto_mapping' => true,
                 'mappings' => [
-                    'Migrify\SymfonyRouteUsage\Entity' => [
-                        'prefix' => 'Migrify\SymfonyRouteUsage\Entity',
+                    'SymfonyRouteUsage' => [
+                        'prefix' => 'Migrify\SymfonyRouteUsage\Entity\\',
                         'type' => 'annotation',
+                        'is_bundle' => false,
                         'dir' => __DIR__ . '/../../src/Entity',
                     ],
                 ],
