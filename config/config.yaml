@@ -1,6 +1,9 @@
 imports:
     # A. monorepo location
-    - { resource: '../../../vendor/symplify/easy-hydrator/config/config.yaml' }
+    # see https://symfony.com/blog/new-in-symfony-4-4-dependency-injection-improvements-part-1#ignore-errors-when-importing-files
+    - { resource: '../../../vendor/symplify/easy-hydrator/config/config.yaml', ignore_errors: 'not_found' }
+    # B. composer dependency
+    - { resource: '../../../../vendor/symplify/easy-hydrator/config/config.yaml', ignore_errors: 'not_found' }
 
 parameters:
     route_usage_exclude_routes: []
