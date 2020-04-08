@@ -1,5 +1,6 @@
 imports:
     - { resource: "packages/*" }
+    - { resource: '../../../../vendor/symplify/easy-hydrator/config/config.yaml' }
 
 parameters:
     database_name: 'migrify_symfony_route_usage_tests'
