@@ -5,6 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-pdo": "*",
         "symplify/package-builder": "^7.2",
         "symplify/smart-file-system": "^7.2",
         "symplify/easy-hydrator": "^7.2"
