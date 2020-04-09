@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Migrify\SymfonyRouteUsage\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 /**
  * @ORM\Entity
  */
-class RouteVisit
+class RouteVisit implements TimestampableInterface
 {
     use TimestampableTrait;
 
