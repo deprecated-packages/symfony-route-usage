@@ -63,11 +63,6 @@ class RouteVisit implements TimestampableInterface
         $this->visitCount = 1;
     }
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getRoute(): string
     {
         return $this->route;
