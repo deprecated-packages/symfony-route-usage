@@ -15,6 +15,11 @@ use Symplify\PackageBuilder\Console\ShellCode;
 final class ShowRouteUsageCommand extends Command
 {
     /**
+     * @var string[]
+     */
+    private const TABLE_HEADLINE = ['Visits', 'Controller', 'Route', 'Params', 'First Visit', 'Last Visit'];
+
+    /**
      * @var RouteVisitRepository
      */
     private $routeVisitRepository;
@@ -40,11 +45,8 @@ final class ShowRouteUsageCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $tableHeadline = ['Visits', 'Controller', 'Route', 'Params', 'First Visit', 'Last Visit'];
         $tableData = [];
-
         $this->symfonyStyle->title('Used Routes by Visit Count');
-
         foreach ($this->routeVisitRepository->fetchAll() as $routeUsageStat) {
             $tableData[] = [
                 'visit_count' => $routeUsageStat->getVisitCount(),
@@ -55,9 +57,7 @@ final class ShowRouteUsageCommand extends Command
                 'last_visit' => $routeUsageStat->getUpdatedAt()->format('Y-m-d'),
             ];
         }
-
-        $this->symfonyStyle->table($tableHeadline, $tableData);
-
+        $this->symfonyStyle->table(self::TABLE_HEADLINE, $tableData);
         return ShellCode::SUCCESS;
     }
 }
