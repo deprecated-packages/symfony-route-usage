@@ -37,3 +37,7 @@ Show used and unused routes:
 ```bash
 bin/console show-route-usage
 ```
+
+<div align="center">
+    <img src="/docs/dead_routes_example.png">
+</div>
