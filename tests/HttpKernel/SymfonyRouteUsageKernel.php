@@ -6,8 +6,10 @@ namespace Migrify\SymfonyRouteUsage\Tests\HttpKernel;
 
 use DAMA\DoctrineTestBundle\DAMADoctrineTestBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
 use Migrify\SymfonyRouteUsage\SymfonyRouteUsageBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
@@ -25,10 +27,14 @@ final class SymfonyRouteUsageKernel extends Kernel
     public function registerBundles(): iterable
     {
         return [
+            new SymfonyRouteUsageBundle(),
+            new DoctrineBehaviorsBundle(),
+            // tests
+            new DAMADoctrineTestBundle(),
+            // symfony app
             new DoctrineBundle(),
             new FrameworkBundle(),
-            new DAMADoctrineTestBundle(),
-            new SymfonyRouteUsageBundle(),
+            new SecurityBundle(),
         ];
     }
 
