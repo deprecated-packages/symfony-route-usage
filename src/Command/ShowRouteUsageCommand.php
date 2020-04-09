@@ -49,8 +49,8 @@ final class ShowRouteUsageCommand extends Command
                 'route' => $routeUsageStat->getRoute(),
                 'params' => $routeUsageStat->getRouteParams(),
                 'visit_count' => $routeUsageStat->getVisitCount(),
-                'first_visit' => $routeUsageStat->getCreatedAt(),
-                'last_visit' => $routeUsageStat->getUpdatedAt(),
+                'first_visit' => $routeUsageStat->getCreatedAt()->format('Y-m-d H:i'),
+                'last_visit' => $routeUsageStat->getUpdatedAt()->format('Y-m-d H:i'),
             ];
         }
 
