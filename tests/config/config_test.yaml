@@ -1,6 +1,5 @@
 imports:
     - { resource: "packages/*" }
-    - { resource: '../../../../vendor/symplify/easy-hydrator/config/config.yaml' }
 
 parameters:
     database_name: 'migrify_symfony_route_usage_tests'
@@ -9,3 +8,8 @@ services:
     # inspired from https://raw.githubusercontent.com/symplify/easy-coding-standard/master/config/services/services_cache.yaml
     Symfony\Component\Cache\Psr16Cache: ~
     Psr\SimpleCache\CacheInterface: '@Symfony\Component\Cache\Psr16Cache'
+
+    # for knplabs/doctrine-behaviors
+    Symfony\Component\Security\Core\Security:
+        arguments:
+            - "@service_container"

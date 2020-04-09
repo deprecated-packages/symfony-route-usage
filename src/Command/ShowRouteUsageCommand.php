@@ -40,6 +40,7 @@ final class ShowRouteUsageCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $tableHeadline = ['Controller', 'Route', 'Params', 'Visit Count', 'First Visit', 'Last Visit'];
         $tableData = [];
 
         foreach ($this->routeVisitRepository->fetchAll() as $routeUsageStat) {
@@ -47,12 +48,14 @@ final class ShowRouteUsageCommand extends Command
                 'controller' => $routeUsageStat->getController(),
                 'route' => $routeUsageStat->getRoute(),
                 'params' => $routeUsageStat->getRouteParams(),
-                'usage_count' => $routeUsageStat->getUsageCount(),
+                'visit_count' => $routeUsageStat->getVisitCount(),
+                'first_visit' => $routeUsageStat->getCreatedAt(),
+                'last_visit' => $routeUsageStat->getUpdatedAt(),
             ];
         }
 
         $this->symfonyStyle->newLine();
-        $this->symfonyStyle->table(['Controller', 'Route', 'Params', 'Usage Count'], $tableData);
+        $this->symfonyStyle->table($tableHeadline, $tableData);
 
         return ShellCode::SUCCESS;
     }

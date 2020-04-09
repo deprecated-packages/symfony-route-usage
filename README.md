@@ -16,12 +16,12 @@ From [julienbourdeau/route-usage/](https://github.com/julienbourdeau/route-usage
 composer require migrify/symfony-route-usage --dev
 ```
 
-Register bundle to your `config/bundles.php`:
+Register bundles to your `config/bundles.php`:
 
 ```php
 
 return [
-    Migrify\SymfonyRouteUsage\SymfonyRouteUsageBundle::class => ['all' => true],   
+    Migrify\SymfonyRouteUsage\SymfonyRouteUsageBundle::class => ['all' => true],
 ];
 ```
 

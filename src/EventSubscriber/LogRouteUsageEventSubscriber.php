@@ -6,6 +6,7 @@ namespace Migrify\SymfonyRouteUsage\EventSubscriber;
 
 use Migrify\SymfonyRouteUsage\EntityFactory\RouteVisitFactory;
 use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
+use Migrify\SymfonyRouteUsage\Route\RouteHashFactory;
 use Nette\Utils\Strings;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -30,14 +31,21 @@ final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
      */
     private $routeVisitRepository;
 
+    /**
+     * @var RouteHashFactory
+     */
+    private $routeHashFactory;
+
     public function __construct(
         RouteVisitRepository $routeVisitRepository,
         RouteVisitFactory $routeVisitFactory,
-        ParameterBagInterface $parameterBag
+        ParameterBagInterface $parameterBag,
+        RouteHashFactory $routeHashFactory
     ) {
         $this->routeVisitRepository = $routeVisitRepository;
         $this->routeVisitFactory = $routeVisitFactory;
         $this->routeUsageExcludeRoutes = $parameterBag->get('route_usage_exclude_routes');
+        $this->routeHashFactory = $routeHashFactory;
     }
 
     /**
@@ -55,8 +63,18 @@ final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $routeVisit = $this->routeVisitFactory->createFromRequest($request);
-        $this->routeVisitRepository->save($routeVisit);
+        $requestHash = $this->routeHashFactory->createFromRequest($request);
+
+        $alreadyExistingRouteVisit = $this->routeVisitRepository->findByRouteHash($requestHash);
+        if ($alreadyExistingRouteVisit !== null) {
+            // update old one
+            $alreadyExistingRouteVisit->increaseVisitCount();
+            $this->routeVisitRepository->save($alreadyExistingRouteVisit);
+        } else {
+            // creat new one
+            $routeVisit = $this->routeVisitFactory->createFromRequest($request, $requestHash);
+            $this->routeVisitRepository->save($routeVisit);
+        }
     }
 
     private function shouldSkipRequest(Request $request): bool
