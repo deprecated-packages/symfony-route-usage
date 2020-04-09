@@ -29,7 +29,7 @@ class RouteVisit
     private $route;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      * @var string
      */
     private $routeParams;
