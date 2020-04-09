@@ -7,6 +7,7 @@ namespace Migrify\SymfonyRouteUsage\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use Nette\Utils\Json;
 
 /**
  * @ORM\Entity
@@ -74,7 +75,17 @@ class RouteVisit implements TimestampableInterface
 
     public function getRouteParams(): string
     {
-        return $this->routeParams;
+        $routeParams = Json::decode($this->routeParams, Json::FORCE_ARRAY);
+        if ($routeParams === []) {
+            return '';
+        }
+
+        $routeParamsForConsole = '';
+        foreach ($routeParams as $paramName => $paramValue) {
+            $routeParamsForConsole .= sprintf('%s: %s', $paramName, $paramValue) . PHP_EOL;
+        }
+
+        return rtrim($routeParamsForConsole);
     }
 
     public function getController(): string
