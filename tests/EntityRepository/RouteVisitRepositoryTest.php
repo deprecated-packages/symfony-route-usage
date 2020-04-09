@@ -11,8 +11,6 @@ use Doctrine\ORM\Tools\SchemaTool;
 use Migrify\SymfonyRouteUsage\Entity\RouteVisit;
 use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
 use Migrify\SymfonyRouteUsage\Tests\HttpKernel\SymfonyRouteUsageKernel;
-use Migrify\SymfonyRouteUsage\ValueObject\RouteUsageStat;
-use Nette\Utils\DateTime;
 use Nette\Utils\Strings;
 use PDOException;
 use Symplify\PackageBuilder\Tests\AbstractKernelTestCase;
@@ -38,17 +36,15 @@ final class RouteVisitRepositoryTest extends AbstractKernelTestCase
 
     public function test(): void
     {
-        $routeVisit = new RouteVisit('some_route', "{'route':'params'}", 'SomeController', DateTime::from('now'));
+        $routeVisit = new RouteVisit('some_route', "{'route':'params'}", 'SomeController', 'some_hash');
 
         $this->routeVisitRepository->save($routeVisit);
 
-        $routeUsageStats = $this->routeVisitRepository->fetchAll();
-        $this->assertCount(1, $routeUsageStats);
+        $routeVisits = $this->routeVisitRepository->fetchAll();
+        $this->assertCount(1, $routeVisits);
 
-        $routeUsageStat = $routeUsageStats[0];
-
-        /** @var RouteUsageStat $routeUsageStat */
-        $this->assertSame(1, $routeUsageStat->getUsageCount());
+        $routeVisit = $routeVisits[0];
+        $this->assertSame(1, $routeVisit->getVisitCount());
     }
 
     private function disableDoctrineLogger(): void

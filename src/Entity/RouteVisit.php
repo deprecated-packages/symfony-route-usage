@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Migrify\SymfonyRouteUsage\Entity;
 
-use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 
 /**
  * @ORM\Entity
  */
 class RouteVisit
 {
+    use TimestampableTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -39,24 +41,24 @@ class RouteVisit
     private $controller;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", unique=true)
      * @var string
      */
-    private $uniqueRouteHash;
+    private $routeHash;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @var DateTimeInterface
+     * @ORM\Column(type="integer")
+     * @var int
      */
-    private $createdAt;
+    private $visitCount;
 
-    public function __construct(string $route, string $routeParams, string $controller, DateTimeInterface $createdAt)
+    public function __construct(string $route, string $routeParams, string $controller, string $routeHash)
     {
         $this->route = $route;
         $this->routeParams = $routeParams;
         $this->controller = $controller;
-        $this->createdAt = $createdAt;
-        $this->uniqueRouteHash = sha1($route . $routeParams);
+        $this->routeHash = $routeHash;
+        $this->visitCount = 1;
     }
 
     public function getId(): ?int
@@ -79,13 +81,13 @@ class RouteVisit
         return $this->controller;
     }
 
-    public function getCreatedAt(): DateTimeInterface
+    public function increaseVisitCount(): void
     {
-        return $this->createdAt;
+        ++$this->visitCount;
     }
 
-    public function getUniqueRouteHash(): string
+    public function getVisitCount(): int
     {
-        return $this->uniqueRouteHash;
+        return $this->visitCount;
     }
 }
