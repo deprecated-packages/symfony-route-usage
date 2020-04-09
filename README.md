@@ -13,7 +13,7 @@ From [julienbourdeau/route-usage/](https://github.com/julienbourdeau/route-usage
 ## Install
 
 ```bash
-composer require migrify/symfony-route-usage --dev
+composer require migrify/symfony-route-usage
 ```
 
 Register bundles to your `config/bundles.php`:
