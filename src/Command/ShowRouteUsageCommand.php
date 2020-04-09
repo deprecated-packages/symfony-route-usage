@@ -40,21 +40,22 @@ final class ShowRouteUsageCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $tableHeadline = ['Controller', 'Route', 'Params', 'Visit Count', 'First Visit', 'Last Visit'];
+        $tableHeadline = ['Visits', 'Controller', 'Route', 'Params', 'First Visit', 'Last Visit'];
         $tableData = [];
+
+        $this->symfonyStyle->title('Used Routes by Visit Count');
 
         foreach ($this->routeVisitRepository->fetchAll() as $routeUsageStat) {
             $tableData[] = [
+                'visit_count' => $routeUsageStat->getVisitCount(),
                 'controller' => $routeUsageStat->getController(),
                 'route' => $routeUsageStat->getRoute(),
                 'params' => $routeUsageStat->getRouteParams(),
-                'visit_count' => $routeUsageStat->getVisitCount(),
-                'first_visit' => $routeUsageStat->getCreatedAt()->format('Y-m-d H:i'),
-                'last_visit' => $routeUsageStat->getUpdatedAt()->format('Y-m-d H:i'),
+                'first_visit' => $routeUsageStat->getCreatedAt()->format('Y-m-d'),
+                'last_visit' => $routeUsageStat->getUpdatedAt()->format('Y-m-d'),
             ];
         }
 
-        $this->symfonyStyle->newLine();
         $this->symfonyStyle->table($tableHeadline, $tableData);
 
         return ShellCode::SUCCESS;
