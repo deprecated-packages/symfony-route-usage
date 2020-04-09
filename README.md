@@ -19,7 +19,6 @@ composer require migrify/symfony-route-usage --dev
 Register bundles to your `config/bundles.php`:
 
 ```php
-
 return [
     Migrify\SymfonyRouteUsage\SymfonyRouteUsageBundle::class => ['all' => true],
 ];
@@ -36,5 +35,5 @@ bin/console doctrine:schema:update
 Show used and unused routes:
 
 ```bash
-bin/console @todo 
+bin/console show-route-usage
 ```
