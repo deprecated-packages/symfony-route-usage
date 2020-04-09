@@ -8,6 +8,7 @@ use Migrify\SymfonyRouteUsage\EntityFactory\RouteVisitFactory;
 use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
 use Migrify\SymfonyRouteUsage\Route\RouteHashFactory;
 use Nette\Utils\Strings;
+use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -79,8 +80,21 @@ final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
 
     private function shouldSkipRequest(Request $request): bool
     {
-        $route = $request->get('_route');
+        if ($this->shouldSkipRoute($request->get('_route'))) {
+            return true;
+        }
 
+        // skip redirects
+        $controller = $request->get('_controller');
+        if (Strings::startsWith($controller, RedirectController::class)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function shouldSkipRoute(?string $route): bool
+    {
         if ($route === null) {
             return true;
         }
