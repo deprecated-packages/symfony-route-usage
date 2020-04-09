@@ -86,11 +86,8 @@ final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
 
         // skip redirects
         $controller = $request->get('_controller');
-        if (Strings::startsWith($controller, RedirectController::class)) {
-            return true;
-        }
 
-        return false;
+        return Strings::startsWith($controller, RedirectController::class);
     }
 
     private function shouldSkipRoute(?string $route): bool
