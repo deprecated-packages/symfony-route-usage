@@ -16,18 +16,12 @@ From [julienbourdeau/route-usage/](https://github.com/julienbourdeau/route-usage
 composer require migrify/symfony-route-usage
 ```
 
-Register bundles to your `config/bundles.php`:
+Register bundle to your `config/bundles.php` (in case Flex misses it):
 
 ```php
 return [
     Migrify\SymfonyRouteUsage\SymfonyRouteUsageBundle::class => ['all' => true],
 ];
-```
-
-Update database with new entity:
-
-```bash
-bin/console doctrine:schema:update
 ```
 
 ## Usage
