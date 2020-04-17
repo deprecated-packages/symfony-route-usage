@@ -18,9 +18,9 @@ use Symfony\Component\HttpKernel\KernelEvents;
 final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var string[]
+     * @var string
      */
-    private $routeUsageExcludeRoutes = [];
+    private $routeUsageExcludeRouteRegex;
 
     /**
      * @var RouteVisitFactory
@@ -45,7 +45,7 @@ final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
     ) {
         $this->routeVisitRepository = $routeVisitRepository;
         $this->routeVisitFactory = $routeVisitFactory;
-        $this->routeUsageExcludeRoutes = $parameterBag->get('route_usage_exclude_routes');
+        $this->routeUsageExcludeRouteRegex = $parameterBag->get('route_usage_exclude_route_regex');
         $this->routeHashFactory = $routeHashFactory;
     }
 
@@ -101,10 +101,19 @@ final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
             return true;
         }
 
-        if (in_array($route, $this->routeUsageExcludeRoutes, true)) {
+        if ($this->shouldExcludeRoute($route)) {
             return true;
         }
 
         return $route === 'error_controller';
+    }
+
+    private function shouldExcludeRoute(string $route): bool
+    {
+        if ($this->routeUsageExcludeRouteRegex === '') {
+            return false;
+        }
+
+        return (bool) Strings::match($route, $this->routeUsageExcludeRouteRegex);
     }
 }
