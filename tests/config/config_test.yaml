@@ -13,3 +13,10 @@ services:
     Symfony\Component\Security\Core\Security:
         arguments:
             - "@service_container"
+
+    # create local router
+    Migrify\SymfonyRouteUsage\Tests\Routing\RouterFactory: null
+    Symfony\Component\Routing\Router:
+        factory: ['@Migrify\SymfonyRouteUsage\Tests\Routing\RouterFactory', 'create']
+
+    Symfony\Component\Routing\RouterInterface: '@Symfony\Component\Routing\Router'
