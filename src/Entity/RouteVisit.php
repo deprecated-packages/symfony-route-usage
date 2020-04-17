@@ -7,7 +7,6 @@ namespace Migrify\SymfonyRouteUsage\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
-use Nette\Utils\Json;
 
 /**
  * @ORM\Entity
@@ -31,12 +30,6 @@ class RouteVisit implements TimestampableInterface
     private $route;
 
     /**
-     * @ORM\Column(type="text")
-     * @var string
-     */
-    private $routeParams;
-
-    /**
      * @ORM\Column(type="string")
      * @var string
      */
@@ -54,33 +47,29 @@ class RouteVisit implements TimestampableInterface
      */
     private $visitCount;
 
-    public function __construct(string $route, string $routeParams, string $controller, string $routeHash)
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $method;
+
+    public function __construct(string $route, string $controller, string $method, string $routeHash)
     {
         $this->route = $route;
-        $this->routeParams = $routeParams;
         $this->controller = $controller;
         $this->routeHash = $routeHash;
         $this->visitCount = 1;
+        $this->method = $method;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getRoute(): string
     {
         return $this->route;
-    }
-
-    public function getRouteParams(): string
-    {
-        $routeParams = Json::decode($this->routeParams, Json::FORCE_ARRAY);
-        if ($routeParams === []) {
-            return '';
-        }
-
-        $routeParamsForConsole = '';
-        foreach ($routeParams as $paramName => $paramValue) {
-            $routeParamsForConsole .= sprintf('%s: %s', $paramName, $paramValue) . PHP_EOL;
-        }
-
-        return rtrim($routeParamsForConsole);
     }
 
     public function getController(): string
@@ -96,5 +85,10 @@ class RouteVisit implements TimestampableInterface
     public function getVisitCount(): int
     {
         return $this->visitCount;
+    }
+
+    public function getMethod(): string
+    {
+        return $this->method;
     }
 }

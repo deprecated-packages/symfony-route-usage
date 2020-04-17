@@ -35,3 +35,14 @@ bin/console show-route-usage
 <div align="center">
     <img src="/docs/dead_routes_example.png">
 </div>
+
+
+## Configuration
+
+By default, `_*` and `error_controller` is excluded. If you want to exclude more routes, use regex parameter: 
+
+```yaml
+# config/services.yaml
+parameters:
+    route_usage_exclude_route_regex: '#legacy#'
+```
