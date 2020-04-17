@@ -17,7 +17,7 @@ final class ShowRouteUsageCommand extends Command
     /**
      * @var string[]
      */
-    private const TABLE_HEADLINE = ['Visits', 'Controller', 'Route', 'Params', 'First Visit', 'Last Visit'];
+    private const TABLE_HEADLINE = ['Visits', 'Controller', 'Route', 'Last Visit'];
 
     /**
      * @var RouteVisitRepository
@@ -50,10 +50,8 @@ final class ShowRouteUsageCommand extends Command
         foreach ($this->routeVisitRepository->fetchAll() as $routeUsageStat) {
             $tableData[] = [
                 'visit_count' => $routeUsageStat->getVisitCount(),
-                'controller' => $routeUsageStat->getController(),
                 'route' => $routeUsageStat->getRoute(),
-                'params' => $routeUsageStat->getRouteParams(),
-                'first_visit' => $routeUsageStat->getCreatedAt()->format('Y-m-d'),
+                'controller' => $routeUsageStat->getController(),
                 'last_visit' => $routeUsageStat->getUpdatedAt()->format('Y-m-d'),
             ];
         }
