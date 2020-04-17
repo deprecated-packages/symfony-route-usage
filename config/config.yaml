@@ -1,5 +1,5 @@
 parameters:
-    route_usage_exclude_routes: []
+    route_usage_exclude_routes: ''
 
 services:
     _defaults:
