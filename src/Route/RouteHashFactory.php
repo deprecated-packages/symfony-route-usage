@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Migrify\SymfonyRouteUsage\Route;
 
-use Nette\Utils\Json;
 use Symfony\Component\HttpFoundation\Request;
 
 final class RouteHashFactory
@@ -12,8 +11,8 @@ final class RouteHashFactory
     public function createFromRequest(Request $request): string
     {
         $route = (string) $request->get('_route');
-        $routeParams = Json::encode($request->get('_route_params'));
+        $method = (string) $request->getMethod();
 
-        return sha1($route . $routeParams);
+        return sha1($route . '_' . $method);
     }
 }
