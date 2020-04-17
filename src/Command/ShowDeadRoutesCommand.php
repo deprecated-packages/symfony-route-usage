@@ -4,35 +4,36 @@ declare(strict_types=1);
 
 namespace Migrify\SymfonyRouteUsage\Command;
 
-use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
+use Migrify\SymfonyRouteUsage\Route\DeadRoutesProvider;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Routing\Route;
 use Symplify\PackageBuilder\Console\Command\CommandNaming;
 use Symplify\PackageBuilder\Console\ShellCode;
 
-final class ShowRouteUsageCommand extends Command
+final class ShowDeadRoutesCommand extends Command
 {
     /**
      * @var string[]
      */
-    private const TABLE_HEADLINE = ['Visits', 'Controller', 'Route', 'Last Visit'];
-
-    /**
-     * @var RouteVisitRepository
-     */
-    private $routeVisitRepository;
+    private const TABLE_HEADLINE = ['Route Name', 'Route Path', 'Controller'];
 
     /**
      * @var SymfonyStyle
      */
     private $symfonyStyle;
 
-    public function __construct(RouteVisitRepository $routeVisitRepository, SymfonyStyle $symfonyStyle)
+    /**
+     * @var DeadRoutesProvider
+     */
+    private $deadRoutesProvider;
+
+    public function __construct(DeadRoutesProvider $deadRoutesProvider, SymfonyStyle $symfonyStyle)
     {
-        $this->routeVisitRepository = $routeVisitRepository;
         $this->symfonyStyle = $symfonyStyle;
+        $this->deadRoutesProvider = $deadRoutesProvider;
 
         parent::__construct();
     }
@@ -40,26 +41,27 @@ final class ShowRouteUsageCommand extends Command
     protected function configure(): void
     {
         $this->setName(CommandNaming::classToName(self::class));
-        $this->setDescription('Show usage of routes');
+        $this->setDescription('Display dead routes');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $tableData = [];
         $this->symfonyStyle->title('Used Routes by Visit Count');
-        foreach ($this->routeVisitRepository->fetchAll() as $routeUsageStat) {
+
+        /** @var Route $route */
+        foreach ($this->deadRoutesProvider->provide() as $routeName => $route) {
             $tableData[] = [
-                'visit_count' => $routeUsageStat->getVisitCount(),
-                'route' => $routeUsageStat->getRoute(),
-                'controller' => $routeUsageStat->getController(),
-                'last_visit' => $routeUsageStat->getUpdatedAt()->format('Y-m-d'),
+                'route_name' => $routeName,
+                'route_path' => $route->getPath(),
+                'controller' => $route->getDefault('_controller'),
             ];
         }
         $this->symfonyStyle->table(self::TABLE_HEADLINE, $tableData);
 
         $otherCommandMessage = sprintf(
-            'Do you want to see what routes are dead? Run "bin/console %s"',
-            CommandNaming::classToName(ShowDeadRoutesCommand::class)
+            'Do you want to see what routes are used? Run "bin/console %s"',
+            CommandNaming::classToName(ShowRouteUsageCommand::class)
         );
         $this->symfonyStyle->note($otherCommandMessage);
 
