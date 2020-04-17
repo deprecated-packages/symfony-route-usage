@@ -32,12 +32,21 @@ Show used routes:
 bin/console show-route-usage
 ```
 
+<div align="center">
+    <img src="/docs/user_routes.png">
+</div>
+
+<br>
+
 Show dead routes:
 
 ```bash
 bin/console show-dead-routes
 ```
 
+<div align="center">
+    <img src="/docs/dead_routes.png">
+</div>
 
 ## Configuration
 
