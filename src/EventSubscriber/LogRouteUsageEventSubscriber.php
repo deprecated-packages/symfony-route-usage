@@ -6,7 +6,7 @@ namespace Migrify\SymfonyRouteUsage\EventSubscriber;
 
 use Migrify\SymfonyRouteUsage\EntityFactory\RouteVisitFactory;
 use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
-use Migrify\SymfonyRouteUsage\Route\RouteHashFactory;
+use Migrify\SymfonyRouteUsage\Routing\RouteHashFactory;
 use Nette\Utils\Strings;
 use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
