@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Route;
+namespace Migrify\SymfonyRouteUsage\Routing;
 
 use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
 use Nette\Utils\Strings;
@@ -74,10 +74,6 @@ final class DeadRoutesProvider
         }
 
         $path = $route->getPath();
-        if (Strings::startsWith($path, '/admin')) {
-            return true;
-        }
-
-        return false;
+        return Strings::startsWith($path, '/admin');
     }
 }
