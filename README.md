@@ -26,15 +26,17 @@ return [
 
 ## Usage
 
-Show used and unused routes:
+Show used routes:
 
 ```bash
 bin/console show-route-usage
 ```
 
-<div align="center">
-    <img src="/docs/dead_routes_example.png">
-</div>
+Show dead routes:
+
+```bash
+bin/console show-dead-routes
+```
 
 
 ## Configuration
