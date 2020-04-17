@@ -1,0 +1,83 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Migrify\SymfonyRouteUsage\Route;
+
+use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
+use Nette\Utils\Strings;
+use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouterInterface;
+
+final class DeadRoutesProvider
+{
+    /**
+     * @var RouteVisitRepository
+     */
+    private $routeVisitRepository;
+
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    public function __construct(RouteVisitRepository $routeVisitRepository, RouterInterface $router)
+    {
+        $this->routeVisitRepository = $routeVisitRepository;
+        $this->router = $router;
+    }
+
+    /**
+     * @return Route[]
+     */
+    public function provide(): array
+    {
+        $deadRoutes = [];
+        foreach ($this->router->getRouteCollection() as $routeName => $route) {
+            if ($this->isRouteUsed($routeName)) {
+                continue;
+            }
+
+            if ($this->shouldSkipRoute($route)) {
+                continue;
+            }
+
+            $deadRoutes[$routeName] = $route;
+        }
+
+        ksort($deadRoutes);
+
+        return $deadRoutes;
+    }
+
+    private function isRouteUsed(string $routeName): bool
+    {
+        foreach ($this->routeVisitRepository->fetchAll() as $routeVisit) {
+            if ($routeVisit->getRoute() === $routeName) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function shouldSkipRoute(Route $route): bool
+    {
+        $defaultController = $route->getDefault('_controller');
+        if ($defaultController === RedirectController::class) {
+            return true;
+        }
+
+        if (Strings::startsWith($defaultController, 'web_profiler')) {
+            return true;
+        }
+
+        $path = $route->getPath();
+        if (Strings::startsWith($path, '/admin')) {
+            return true;
+        }
+
+        return false;
+    }
+}
