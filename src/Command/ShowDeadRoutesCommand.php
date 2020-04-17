@@ -18,7 +18,7 @@ final class ShowDeadRoutesCommand extends Command
     /**
      * @var string[]
      */
-    private const TABLE_HEADLINE = ['Route Name', 'Route Path', 'Controller'];
+    private const TABLE_HEADLINE = ['Route Name', 'Controller'];
 
     /**
      * @var SymfonyStyle
@@ -53,7 +53,6 @@ final class ShowDeadRoutesCommand extends Command
         foreach ($this->deadRoutesProvider->provide() as $routeName => $route) {
             $tableData[] = [
                 'route_name' => $routeName,
-                'route_path' => $route->getPath(),
                 'controller' => $route->getDefault('_controller'),
             ];
         }
