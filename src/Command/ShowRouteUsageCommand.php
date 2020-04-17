@@ -17,7 +17,7 @@ final class ShowRouteUsageCommand extends Command
     /**
      * @var string[]
      */
-    private const TABLE_HEADLINE = ['Visits', 'Controller', 'Route', 'Last Visit'];
+    private const TABLE_HEADLINE = ['Visits', 'Controller', 'Route', 'Method', 'Last Visit'];
 
     /**
      * @var RouteVisitRepository
@@ -52,6 +52,7 @@ final class ShowRouteUsageCommand extends Command
                 'visit_count' => $routeUsageStat->getVisitCount(),
                 'route' => $routeUsageStat->getRoute(),
                 'controller' => $routeUsageStat->getController(),
+                'method' => $routeUsageStat->getMethod(),
                 'last_visit' => $routeUsageStat->getUpdatedAt()->format('Y-m-d'),
             ];
         }
