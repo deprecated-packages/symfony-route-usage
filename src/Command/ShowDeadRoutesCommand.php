@@ -47,7 +47,7 @@ final class ShowDeadRoutesCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $tableData = [];
-        $this->symfonyStyle->title('Used Routes by Visit Count');
+        $this->symfonyStyle->title('Dead Routes');
 
         /** @var Route $route */
         foreach ($this->deadRoutesProvider->provide() as $routeName => $route) {
