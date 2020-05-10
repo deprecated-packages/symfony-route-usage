@@ -6,8 +6,8 @@
     "require": {
         "php": "^7.2",
         "ext-pdo": "*",
-        "symplify/package-builder": "^7.2",
-        "symplify/smart-file-system": "^7.2",
+        "symplify/package-builder": "^7.3.10",
+        "symplify/smart-file-system": "^7.3.10",
         "knplabs/doctrine-behaviors": "^2.0.3"
     },
     "require-dev": {
