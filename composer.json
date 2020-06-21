@@ -8,7 +8,7 @@
         "ext-pdo": "*",
         "symplify/package-builder": "^8.0",
         "symplify/smart-file-system": "^8.0",
-        "knplabs/doctrine-behaviors": "^2.0.3"
+        "knplabs/doctrine-behaviors": "^2.0.5"
     },
     "require-dev": {
         "dama/doctrine-test-bundle": "^6.3",
