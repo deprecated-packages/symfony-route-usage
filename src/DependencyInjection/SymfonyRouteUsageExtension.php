@@ -14,8 +14,8 @@ final class SymfonyRouteUsageExtension extends Extension implements PrependExten
 {
     public function load(array $configs, ContainerBuilder $containerBuilder): void
     {
-        $loader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../../config'));
-        $loader->load('config.php');
+        $phpFileLoader = new PhpFileLoader($containerBuilder, new FileLocator(__DIR__ . '/../../config'));
+        $phpFileLoader->load('config.php');
     }
 
     public function prepend(ContainerBuilder $containerBuilder): void
