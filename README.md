@@ -60,3 +60,11 @@ By default, `_*` and `error_controller` is excluded. If you want to exclude more
 parameters:
     route_usage_exclude_route_regex: '#legacy#'
 ```
+
+## Report Issues
+
+In case you are experiencing a bug or want to request a new feature head over to the [migrify monorepo issue tracker](https://github.com/migrify/migrify/issues)
+
+## Contribute
+
+The sources of this package are contained in the migrify monorepo. We welcome contributions for this package on [migrify/migrify](https://github.com/migrify/migrify).
