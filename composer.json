@@ -4,10 +4,10 @@
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
-        "php": "^7.2|^8.0",
+        "php": ">=7.2",
         "ext-pdo": "*",
-        "symplify/package-builder": "^8.1.17",
-        "symplify/smart-file-system": "^8.1.17",
+        "symplify/package-builder": "^8.2",
+        "symplify/smart-file-system": "^8.2",
         "knplabs/doctrine-behaviors": "^2.0.7"
     },
     "require-dev": {
