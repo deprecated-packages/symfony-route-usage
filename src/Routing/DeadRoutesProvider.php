@@ -34,16 +34,16 @@ final class DeadRoutesProvider
     public function provide(): array
     {
         $deadRoutes = [];
-        foreach ($this->router->getRouteCollection() as $routeName => $route) {
+        foreach ($this->router->getRouteCollection() as $routeName => $routeCollection) {
             if ($this->isRouteUsed($routeName)) {
                 continue;
             }
 
-            if ($this->shouldSkipRoute($route)) {
+            if ($this->shouldSkipRoute($routeCollection)) {
                 continue;
             }
 
-            $deadRoutes[$routeName] = $route;
+            $deadRoutes[$routeName] = $routeCollection;
         }
 
         ksort($deadRoutes);
