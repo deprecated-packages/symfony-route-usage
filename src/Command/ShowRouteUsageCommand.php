@@ -47,13 +47,13 @@ final class ShowRouteUsageCommand extends Command
     {
         $tableData = [];
         $this->symfonyStyle->title('Used Routes by Visit Count');
-        foreach ($this->routeVisitRepository->fetchAll() as $routeUsageStat) {
+        foreach ($this->routeVisitRepository->fetchAll() as $routeVisit) {
             $tableData[] = [
-                'visit_count' => $routeUsageStat->getVisitCount(),
-                'route' => $routeUsageStat->getRoute(),
-                'controller' => $routeUsageStat->getController(),
-                'method' => $routeUsageStat->getMethod(),
-                'last_visit' => $routeUsageStat->getUpdatedAt()->format('Y-m-d'),
+                'visit_count' => $routeVisit->getVisitCount(),
+                'route' => $routeVisit->getRoute(),
+                'controller' => $routeVisit->getController(),
+                'method' => $routeVisit->getMethod(),
+                'last_visit' => $routeVisit->getUpdatedAt()->format('Y-m-d'),
             ];
         }
         $this->symfonyStyle->table(self::TABLE_HEADLINE, $tableData);
