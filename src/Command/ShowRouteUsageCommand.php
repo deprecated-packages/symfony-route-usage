@@ -53,7 +53,8 @@ final class ShowRouteUsageCommand extends Command
                 'route' => $routeVisit->getRoute(),
                 'controller' => $routeVisit->getController(),
                 'method' => $routeVisit->getMethod(),
-                'last_visit' => $routeVisit->getUpdatedAt()->format('Y-m-d'),
+                'last_visit' => $routeVisit->getUpdatedAt()
+                    ->format('Y-m-d'),
             ];
         }
         $this->symfonyStyle->table(self::TABLE_HEADLINE, $tableData);

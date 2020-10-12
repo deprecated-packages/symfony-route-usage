@@ -45,7 +45,9 @@ final class RouteVisitRepository
     {
         $this->tableInitiator->initializeTableForEntity(RouteVisit::class);
 
-        return $this->objectRepository->findOneBy(['routeHash' => $routeHash]);
+        return $this->objectRepository->findOneBy([
+            'routeHash' => $routeHash,
+        ]);
     }
 
     /**
