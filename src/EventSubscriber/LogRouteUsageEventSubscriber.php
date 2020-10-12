@@ -54,7 +54,9 @@ final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
      */
     public static function getSubscribedEvents(): array
     {
-        return [KernelEvents::CONTROLLER => 'onController'];
+        return [
+            KernelEvents::CONTROLLER => 'onController',
+        ];
     }
 
     public function onController(ControllerEvent $controllerEvent): void
