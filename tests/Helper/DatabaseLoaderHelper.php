@@ -43,13 +43,16 @@ final class DatabaseLoaderHelper
         $connection = $this->container->get('doctrine.dbal.default_connection');
         $databaseName = $this->container->getParameter('database_name');
 
-        $existingDatabases = $connection->getSchemaManager()->listDatabases();
+        $existingDatabases = $connection->getSchemaManager()
+            ->listDatabases();
         if (in_array($databaseName, $existingDatabases, true)) {
             return;
         }
 
-        $databaseName = $connection->getDatabasePlatform()->quoteSingleIdentifier($databaseName);
+        $databaseName = $connection->getDatabasePlatform()
+            ->quoteSingleIdentifier($databaseName);
         // somehow broken on my pc, see https://github.com/doctrine/dbal/pull/2671
-        $connection->getSchemaManager()->createDatabase($databaseName);
+        $connection->getSchemaManager()
+            ->createDatabase($databaseName);
     }
 }
