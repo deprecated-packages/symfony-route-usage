@@ -82,7 +82,8 @@ final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
 
     private function shouldSkipRequest(Request $request): bool
     {
-        if ($this->shouldSkipRoute($request->get('_route'))) {
+        $routeKey = $request->get('_route');
+        if ($this->shouldSkipRoute($routeKey)) {
             return true;
         }
 
