@@ -4,16 +4,15 @@ declare(strict_types=1);
 
 namespace Migrify\SymfonyRouteUsage\Command;
 
+use Migrify\MigrifyKernel\Command\AbstractMigrifyCommand;
 use Migrify\SymfonyRouteUsage\Routing\DeadRoutesProvider;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Routing\Route;
 use Symplify\PackageBuilder\Console\Command\CommandNaming;
 use Symplify\PackageBuilder\Console\ShellCode;
 
-final class ShowDeadRoutesCommand extends Command
+final class ShowDeadRoutesCommand extends AbstractMigrifyCommand
 {
     /**
      * @var string[]
@@ -21,18 +20,12 @@ final class ShowDeadRoutesCommand extends Command
     private const TABLE_HEADLINE = ['Route Name', 'Controller'];
 
     /**
-     * @var SymfonyStyle
-     */
-    private $symfonyStyle;
-
-    /**
      * @var DeadRoutesProvider
      */
     private $deadRoutesProvider;
 
-    public function __construct(DeadRoutesProvider $deadRoutesProvider, SymfonyStyle $symfonyStyle)
+    public function __construct(DeadRoutesProvider $deadRoutesProvider)
     {
-        $this->symfonyStyle = $symfonyStyle;
         $this->deadRoutesProvider = $deadRoutesProvider;
 
         parent::__construct();
@@ -40,7 +33,6 @@ final class ShowDeadRoutesCommand extends Command
 
     protected function configure(): void
     {
-        $this->setName(CommandNaming::classToName(self::class));
         $this->setDescription('Display dead routes');
     }
 
