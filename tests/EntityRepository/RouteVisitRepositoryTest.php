@@ -8,7 +8,7 @@ use Migrify\SymfonyRouteUsage\Entity\RouteVisit;
 use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
 use Migrify\SymfonyRouteUsage\Tests\Helper\DatabaseLoaderHelper;
 use Migrify\SymfonyRouteUsage\Tests\HttpKernel\SymfonyRouteUsageKernel;
-use Symplify\PackageBuilder\Tests\AbstractKernelTestCase;
+use Symplify\PackageBuilder\Testing\AbstractKernelTestCase;
 
 final class RouteVisitRepositoryTest extends AbstractKernelTestCase
 {
