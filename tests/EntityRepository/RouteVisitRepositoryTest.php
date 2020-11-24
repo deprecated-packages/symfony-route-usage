@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Tests\EntityRepository;
+namespace Symplify\SymfonyRouteUsage\Tests\EntityRepository;
 
-use Migrify\SymfonyRouteUsage\Entity\RouteVisit;
-use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
-use Migrify\SymfonyRouteUsage\Tests\Helper\DatabaseLoaderHelper;
-use Migrify\SymfonyRouteUsage\Tests\HttpKernel\SymfonyRouteUsageKernel;
 use Symplify\PackageBuilder\Testing\AbstractKernelTestCase;
+use Symplify\SymfonyRouteUsage\Entity\RouteVisit;
+use Symplify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
+use Symplify\SymfonyRouteUsage\Tests\Helper\DatabaseLoaderHelper;
+use Symplify\SymfonyRouteUsage\Tests\HttpKernel\SymfonyRouteUsageKernel;
 
 final class RouteVisitRepositoryTest extends AbstractKernelTestCase
 {
@@ -19,7 +19,7 @@ final class RouteVisitRepositoryTest extends AbstractKernelTestCase
 
     protected function setUp(): void
     {
-        $this->markTestSkipped('Out of order, needs to fix database loading in GitHub Actions');
+        $this->markTestSkipped('Temporary broken');
 
         $this->bootKernel(SymfonyRouteUsageKernel::class);
 

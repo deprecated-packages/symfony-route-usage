@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Routing;
+namespace Symplify\SymfonyRouteUsage\Routing;
 
-use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
 use Nette\Utils\Strings;
 use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouterInterface;
+use Symplify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
 
 final class DeadRoutesProvider
 {

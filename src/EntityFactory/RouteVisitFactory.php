@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\EntityFactory;
+namespace Symplify\SymfonyRouteUsage\EntityFactory;
 
-use Migrify\SymfonyRouteUsage\Entity\RouteVisit;
 use Symfony\Component\HttpFoundation\Request;
+use Symplify\SymfonyRouteUsage\Entity\RouteVisit;
 
 final class RouteVisitFactory
 {

@@ -16,8 +16,8 @@ doctrine:
 
         # load local entities
         mappings:
-            Migrify\SymfonyRouteUsage\Entity:
+            Symplify\SymfonyRouteUsage\Entity:
                 type: annotation
                 dir: '%kernel.project_dir%/src/Entity'
                 is_bundle: false
-                prefix: Migrify\SymfonyRouteUsage\Entity
+                prefix: Symplify\SymfonyRouteUsage\Entity

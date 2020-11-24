@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\DependencyInjection;
+namespace Symplify\SymfonyRouteUsage\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -25,7 +25,7 @@ final class SymfonyRouteUsageExtension extends Extension implements PrependExten
             'orm' => [
                 'mappings' => [
                     'SymfonyRouteUsage' => [
-                        'prefix' => 'Migrify\SymfonyRouteUsage\Entity\\',
+                        'prefix' => 'Symplify\SymfonyRouteUsage\Entity\\',
                         'type' => 'annotation',
                         'is_bundle' => false,
                         'dir' => __DIR__ . '/../../src/Entity',

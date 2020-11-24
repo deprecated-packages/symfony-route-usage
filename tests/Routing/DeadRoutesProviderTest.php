@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Tests\Routing;
+namespace Symplify\SymfonyRouteUsage\Tests\Routing;
 
-use Migrify\SymfonyRouteUsage\Routing\DeadRoutesProvider;
-use Migrify\SymfonyRouteUsage\Tests\Helper\DatabaseLoaderHelper;
-use Migrify\SymfonyRouteUsage\Tests\HttpKernel\SymfonyRouteUsageKernel;
 use Symplify\PackageBuilder\Testing\AbstractKernelTestCase;
+use Symplify\SymfonyRouteUsage\Routing\DeadRoutesProvider;
+use Symplify\SymfonyRouteUsage\Tests\Helper\DatabaseLoaderHelper;
+use Symplify\SymfonyRouteUsage\Tests\HttpKernel\SymfonyRouteUsageKernel;
 
 final class DeadRoutesProviderTest extends AbstractKernelTestCase
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-use Migrify\SymfonyRouteUsage\Tests\Routing\RouterFactory;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Cache\Psr16Cache;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Security;
+use Symplify\SymfonyRouteUsage\Tests\Routing\RouterFactory;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\ref;
 
 return static function (ContainerConfigurator $containerConfigurator): void {

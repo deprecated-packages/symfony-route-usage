@@ -2,11 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\EventSubscriber;
+namespace Symplify\SymfonyRouteUsage\EventSubscriber;
 
-use Migrify\SymfonyRouteUsage\EntityFactory\RouteVisitFactory;
-use Migrify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
-use Migrify\SymfonyRouteUsage\Routing\RouteHashFactory;
 use Nette\Utils\Strings;
 use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -14,6 +11,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Symplify\SymfonyRouteUsage\EntityFactory\RouteVisitFactory;
+use Symplify\SymfonyRouteUsage\EntityRepository\RouteVisitRepository;
+use Symplify\SymfonyRouteUsage\Routing\RouteHashFactory;
 
 final class LogRouteUsageEventSubscriber implements EventSubscriberInterface
 {

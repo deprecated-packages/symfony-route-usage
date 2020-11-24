@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Command;
+namespace Symplify\SymfonyRouteUsage\Command;
 
-use Migrify\MigrifyKernel\Command\AbstractMigrifyCommand;
-use Migrify\SymfonyRouteUsage\Routing\DeadRoutesProvider;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Routing\Route;
+use Symplify\PackageBuilder\Console\Command\AbstractSymplifyCommand;
 use Symplify\PackageBuilder\Console\Command\CommandNaming;
 use Symplify\PackageBuilder\Console\ShellCode;
+use Symplify\SymfonyRouteUsage\Routing\DeadRoutesProvider;
 
-final class ShowDeadRoutesCommand extends AbstractMigrifyCommand
+final class ShowDeadRoutesCommand extends AbstractSymplifyCommand
 {
     /**
      * @var string[]

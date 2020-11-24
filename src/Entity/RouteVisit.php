@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Entity;
+namespace Symplify\SymfonyRouteUsage\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
@@ -90,5 +90,10 @@ class RouteVisit implements TimestampableInterface
     public function getMethod(): string
     {
         return $this->method;
+    }
+
+    public function getRouteHash(): string
+    {
+        return $this->routeHash;
     }
 }

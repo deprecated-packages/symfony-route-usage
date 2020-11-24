@@ -1,11 +1,10 @@
 # Detect Used and Unused Symfony Routes
 
-[![Downloads total](https://img.shields.io/packagist/dt/migrify/symfony-route-usage.svg?style=flat-square)](https://packagist.org/packages/migrify/symfony-route-usage/stats)
+[![Downloads total](https://img.shields.io/packagist/dt/symplify/symfony-route-usage.svg?style=flat-square)](https://packagist.org/packages/symplify/symfony-route-usage/stats)
 
 **Read about this package: [How to Find Dead Symfony Routes](https://www.tomasvotruba.com/blog/2020/04/06/how-to-find-dead-symfony-routes/)**
 
 <br>
-
 
 *Inspired by [Route Usage](https://github.com/julienbourdeau/route-usage/) for Laravel:*
 
@@ -16,14 +15,16 @@ After a few years, any projects have dead code and unused endpoint. Typically, y
 ## Install
 
 ```bash
-composer require migrify/symfony-route-usage
+composer require symplify/symfony-route-usage
 ```
 
 Register bundle to your `config/bundles.php` (in case Flex misses it):
 
 ```php
 return [
-    Migrify\SymfonyRouteUsage\SymfonyRouteUsageBundle::class => ['all' => true],
+    Symplify\SymfonyRouteUsage\SymfonyRouteUsageBundle::class => [
+        'all' => true,
+    ],
 ];
 ```
 
@@ -53,7 +54,7 @@ bin/console show-dead-routes
 
 ## Configuration
 
-By default, `_*` and `error_controller` is excluded. If you want to exclude more routes, use regex parameter: 
+By default, `_*` and `error_controller` is excluded. If you want to exclude more routes, use regex parameter:
 
 ```yaml
 # config/services.yaml
@@ -63,8 +64,8 @@ parameters:
 
 ## Report Issues
 
-In case you are experiencing a bug or want to request a new feature head over to the [migrify monorepo issue tracker](https://github.com/migrify/migrify/issues)
+In case you are experiencing a bug or want to request a new feature head over to the [migrify monorepo issue tracker](https://github.com/symplify/symplify/issues)
 
 ## Contribute
 
-The sources of this package are contained in the migrify monorepo. We welcome contributions for this package on [migrify/migrify](https://github.com/migrify/migrify).
+The sources of this package are contained in the migrify monorepo. We welcome contributions for this package on [symplify/migrify](https://github.com/symplify/migrify).

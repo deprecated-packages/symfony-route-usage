@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage;
+namespace Symplify\SymfonyRouteUsage;
 
-use Migrify\SymfonyRouteUsage\DependencyInjection\SymfonyRouteUsageExtension;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symplify\SymfonyRouteUsage\DependencyInjection\SymfonyRouteUsageExtension;
 
 final class SymfonyRouteUsageBundle extends Bundle
 {

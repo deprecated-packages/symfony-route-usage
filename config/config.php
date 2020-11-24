@@ -25,7 +25,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->autoconfigure()
         ->public();
 
-    $services->load('Migrify\SymfonyRouteUsage\\', __DIR__ . '/../src')
+    $services->load('Symplify\SymfonyRouteUsage\\', __DIR__ . '/../src')
         ->exclude([__DIR__ . '/../src/Entity']);
 
     $services->set(SymfonyStyleFactory::class);

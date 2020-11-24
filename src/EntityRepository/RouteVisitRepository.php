@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\EntityRepository;
+namespace Symplify\SymfonyRouteUsage\EntityRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectRepository;
-use Migrify\SymfonyRouteUsage\Database\TableInitiator;
-use Migrify\SymfonyRouteUsage\Entity\RouteVisit;
+use Symplify\SymfonyRouteUsage\Database\TableInitiator;
+use Symplify\SymfonyRouteUsage\Entity\RouteVisit;
 
 final class RouteVisitRepository
 {

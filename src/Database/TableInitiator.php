@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Database;
+namespace Symplify\SymfonyRouteUsage\Database;
 
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;

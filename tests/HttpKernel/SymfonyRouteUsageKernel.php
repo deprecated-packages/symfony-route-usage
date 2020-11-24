@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Tests\HttpKernel;
+namespace Symplify\SymfonyRouteUsage\Tests\HttpKernel;
 
 use DAMA\DoctrineTestBundle\DAMADoctrineTestBundle;
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Knp\DoctrineBehaviors\DoctrineBehaviorsBundle;
-use Migrify\SymfonyRouteUsage\SymfonyRouteUsageBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\HttpKernel\Kernel;
+use Symplify\SymfonyRouteUsage\SymfonyRouteUsageBundle;
 
 final class SymfonyRouteUsageKernel extends Kernel
 {

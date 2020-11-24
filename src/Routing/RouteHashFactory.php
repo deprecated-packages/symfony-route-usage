@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Migrify\SymfonyRouteUsage\Routing;
+namespace Symplify\SymfonyRouteUsage\Routing;
 
 use Symfony\Component\HttpFoundation\Request;
 
